@@ -31,12 +31,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Unfold - MUST be before django.contrib.admin
+    "unfold",
+    "unfold.contrib.filters",
+    "unfold.contrib.forms",
+    
+    # Django core apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Project apps
     'tasks',
 ]
 
@@ -59,6 +67,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -103,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -116,8 +125,119 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ============================================================
+# DJANGO UNFOLD CONFIGURATION
+# ============================================================
+
+UNFOLD = {
+    # Branding
+    "SITE_TITLE": "TaskFlow Admin",
+    "SITE_HEADER": "TaskFlow",
+    "SITE_URL": "/",
+    # "SITE_ICON": "static/logo.svg",  # Uncomment and add your logo
+    
+    # Theme colors - Purple/Blue theme matching frontend
+    "COLORS": {
+        "primary": {
+            "50": "250 245 255",
+            "100": "243 232 255",
+            "200": "233 213 255",
+            "300": "216 180 254",
+            "400": "192 132 252",
+            "500": "168 85 247",    # Main purple
+            "600": "147 51 234",
+            "700": "126 34 206",
+            "800": "107 33 168",
+            "900": "88 28 135",
+            "950": "59 7 100",
+        },
+    },
+    
+    # Sidebar configuration
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": True,
+        "navigation": [
+            {
+                "title": "Navigation",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Dashboard",
+                        "icon": "dashboard",
+                        "link": "/admin/",
+                    },
+                    {
+                        "title": "Tâches",
+                        "icon": "task",
+                        "link": "/admin/tasks/task/",
+                    },
+                ],
+            },
+            {
+                "title": "Administration",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Utilisateurs",
+                        "icon": "people",
+                        "link": "/admin/auth/user/",
+                    },
+                    {
+                        "title": "Groupes",
+                        "icon": "group",
+                        "link": "/admin/auth/group/",
+                    },
+                ],
+            },
+        ],
+    },
+    
+    # Environment badge (optional)
+    "ENVIRONMENT": "development",  # or "production", "staging"
+    
+    # Dashboard customization
+    "DASHBOARD_CALLBACK": None,  # Add custom dashboard widgets here
+    
+    # Extensions
+    "EXTENSIONS": {
+        "modeltranslation": {
+            "flags": {
+                "en": "🇬🇧",
+                "fr": "🇫🇷",
+            },
+        },
+    },
+    
+    # Tabs configuration
+    "TABS": [
+        {
+            "models": [
+                "tasks.task",
+            ],
+            "items": [
+                {
+                    "title": "Toutes les tâches",
+                    "link": "/admin/tasks/task/",
+                },
+                {
+                    "title": "Tâches terminées",
+                    "link": "/admin/tasks/task/?is_done__exact=1",
+                },
+                {
+                    "title": "En cours",
+                    "link": "/admin/tasks/task/?is_done__exact=0",
+                },
+            ],
+        },
+    ],
+}
+
