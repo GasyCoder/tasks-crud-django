@@ -1,4 +1,4 @@
-# 📋 TaskFlow - Application de Gestion de Tâches
+# TaskFlow - Application de Gestion de Tâches
 
 Une application web moderne de gestion de tâches construite avec Django 5.2 et TailwindCSS, avec une interface d'administration redessinée professionnellement.
 
@@ -12,31 +12,31 @@ Une application web moderne de gestion de tâches construite avec Django 5.2 et 
 ## ✨ Fonctionnalités
 
 ### Interface Utilisateur
-- 🎨 **Design Moderne** : Interface utilisateur avec TailwindCSS, gradients et animations fluides
-- 🌓 **Thème Élégant** : Palette de couleurs purple/blue cohérente
-- 📱 **Responsive** : Compatible mobile, tablette et desktop
-- ✨ **Glassmorphism** : Effets visuels modernes avec backdrop-filter
-- 🎭 **Animations** : Transitions fluides et micro-animations
+-  **Design Moderne** : Interface utilisateur avec TailwindCSS, gradients et animations fluides
+- **Thème Élégant** : Palette de couleurs purple/blue cohérente
+- **Responsive** : Compatible mobile, tablette et desktop
+- **Glassmorphism** : Effets visuels modernes avec backdrop-filter
+- **Animations** : Transitions fluides et micro-animations
 
 ### Fonctionnalités CRUD
-- ✅ **Créer** des tâches avec titre et description
-- 📝 **Lire** et visualiser toutes les tâches
-- ✏️ **Modifier** les tâches existantes
-- 🗑️ **Supprimer** les tâches avec confirmation
-- 🔍 **Rechercher** dans les tâches par titre ou description
-- 🏷️ **Statut** : Marquer comme "Terminé" ou "En cours"
+-  **Créer** des tâches avec titre et description
+- **Lire** et visualiser toutes les tâches
+- **Modifier** les tâches existantes
+- **Supprimer** les tâches avec confirmation
+- **Rechercher** dans les tâches par titre ou description
+- **Statut** : Marquer comme "Terminé" ou "En cours"
 
 ### Interface Admin Professionnelle
-- 🎯 **Django Unfold** : Interface admin moderne et production-ready
-- 🎨 **Badges Personnalisés** : Status colorés avec gradients
-- ⚡ **Actions Batch** : Marquer terminé/en cours, dupliquer des tâches
-- 📊 **Dashboard** : Sidebar moderne avec navigation hiérarchique
-- 🔐 **Authentification** : Login redesigné avec glassmorphism
-- 📑 **Tabs** : Filtrage rapide (Toutes | Terminées | En cours)
+- **Django Unfold** : Interface admin moderne et production-ready
+- **Badges Personnalisés** : Status colorés avec gradients
+- **Actions Batch** : Marquer terminé/en cours, dupliquer des tâches
+- **Dashboard** : Sidebar moderne avec navigation hiérarchique
+- **Authentification** : Login redesigné avec glassmorphism
+- **Tabs** : Filtrage rapide (Toutes | Terminées | En cours)
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prérequis
 
@@ -48,7 +48,7 @@ Une application web moderne de gestion de tâches construite avec Django 5.2 et 
 
 1. **Cloner le repository**
 ```bash
-git clone <votre-repo-url>
+git clone https://github.com/GasyCoder/tasks-crud-django
 cd mydjango
 ```
 
@@ -89,7 +89,7 @@ python manage.py runserver
 
 ---
 
-## 📁 Structure du Projet
+## Structure du Projet
 
 ```
 mydjango/
@@ -138,7 +138,7 @@ mydjango/
 
 ---
 
-## 📝 Utilisation
+## Utilisation
 
 ### Interface Utilisateur
 
@@ -166,9 +166,9 @@ mydjango/
 #### Actions Batch
 1. Sélectionnez plusieurs tâches (cochez les cases)
 2. Choisissez une action dans le menu déroulant :
-   - ✅ Marquer comme terminé
-   - ⏳ Marquer comme en cours
-   - 📋 Dupliquer les tâches
+   - Marquer comme terminé
+   - Marquer comme en cours
+   - Dupliquer les tâches
 3. Cliquez sur **"Exécuter"**
 
 #### Filtres Rapides (Tabs)
@@ -179,7 +179,7 @@ Utilisez les tabs en haut de la liste :
 
 ---
 
-## 🎨 Personnalisation
+## Personnalisation
 
 ### Couleurs du Thème
 
@@ -250,7 +250,7 @@ Par défaut, SQLite est utilisé. Pour PostgreSQL :
 
 ---
 
-## 🧪 Tests
+## Tests
 
 Pour tester l'application :
 
@@ -264,7 +264,7 @@ python manage.py test tasks
 
 ---
 
-## 📦 Déploiement
+## Déploiement
 
 ### Checklist de déploiement
 
@@ -286,7 +286,7 @@ gunicorn config.wsgi:application --bind 0.0.0.0:8000
 
 ---
 
-## 🤝 Contribution
+## Contribution
 
 Les contributions sont les bienvenues ! Pour contribuer :
 
@@ -298,21 +298,21 @@ Les contributions sont les bienvenues ! Pour contribuer :
 
 ---
 
-## 📄 Licence
+## Licence
 
 Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ---
 
-## 👨‍💻 Auteur
+## Auteur
 
-**Votre Nom**
-- GitHub: [@votre-username](https://github.com/votre-username)
-- Email: votre.email@example.com
+**GasyCoder**
+- GitHub: [@GasyCoder](https://github.com/GasyCoder)
+- Website: https://me.gasycoder.com
 
 ---
 
-## 🙏 Remerciements
+## Remerciements
 
 - [Django](https://www.djangoproject.com/) - Framework web
 - [TailwindCSS](https://tailwindcss.com/) - Framework CSS
@@ -321,7 +321,7 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ---
 
-## 📚 Documentation Supplémentaire
+## Documentation Supplémentaire
 
 - [Documentation Django](https://docs.djangoproject.com/)
 - [Documentation TailwindCSS](https://tailwindcss.com/docs)
@@ -329,7 +329,7 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ---
 
-## 🔮 Roadmap
+## Roadmap
 
 - [ ] Tests unitaires et d'intégration
 - [ ] API REST avec Django REST Framework
