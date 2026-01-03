@@ -1,0 +1,115 @@
+{% extends "tasks/base.html" %}
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+  <!-- Breadcrumb -->
+  <div class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <a href="{% url 'tasks:list' %}" class="text-purple-300 hover:text-white transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+        </svg>
+      </a>
+      <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+      <span class="text-purple-200">Détails</span>
+    </nav>
+  </div>
+
+  <div class="max-w-4xl">
+    <!-- Task Header -->
+    <div class="glass-dark rounded-2xl p-8 border border-white/10 shadow-2xl mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+        <div class="flex-1">
+          <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
+            {{ task.title }}
+          </h1>
+          <div class="flex flex-wrap items-center gap-3">
+            {% if task.is_done %}
+              <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/30">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                Tâche terminée
+              </span>
+            {% else %}
+              <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-500/30">
+                <svg class="w-4 h-4 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                </svg>
+                En cours
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Metadata -->
+      <div class="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
+        <div class="flex items-center text-purple-200/70">
+          <svg class="w-5 h-5 mr-2 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <span class="text-sm">Créé le {{ task.created_at|date:"d/m/Y à H:i" }}</span>
+        </div>
+        {% if task.updated_at %}
+          <div class="flex items-center text-purple-200/70">
+            <svg class="w-5 h-5 mr-2 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            <span class="text-sm">Modifié le {{ task.updated_at|date:"d/m/Y à H:i" }}</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Task Description -->
+    <div class="glass-dark rounded-2xl p-8 border border-white/10 shadow-2xl mb-6">
+      <div class="flex items-center mb-4">
+        <svg class="w-5 h-5 mr-2 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+        </svg>
+        <h2 class="text-lg font-semibold text-white">Description</h2>
+      </div>
+      {% if task.description %}
+        <div class="prose prose-invert max-w-none">
+          <p class="text-purple-100/80 text-base leading-relaxed whitespace-pre-wrap">{{ task.description }}</p>
+        </div>
+      {% else %}
+        <p class="text-purple-200/40 italic">Aucune description disponible pour cette tâche.</p>
+      {% endif %}
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-wrap gap-4">
+      <a 
+        href="{% url 'tasks:update' task.pk %}" 
+        class="flex-1 sm:flex-none inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/50"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+        </svg>
+        Modifier
+      </a>
+      <a 
+        href="{% url 'tasks:delete' task.pk %}" 
+        class="flex-1 sm:flex-none inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-red-500/50"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+        </svg>
+        Supprimer
+      </a>
+      <a 
+        href="{% url 'tasks:list' %}" 
+        class="flex-1 sm:flex-none inline-flex items-center justify-center px-8 py-3 bg-white/5 hover:bg-white/10 text-purple-200 hover:text-white border border-white/10 hover:border-purple-500/50 font-semibold rounded-xl transition-all duration-300"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Retour à la liste
+      </a>
+    </div>
+  </div>
+{% endblock %}
